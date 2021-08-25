@@ -1,13 +1,12 @@
 package com.shadab;
 
-/**
- * Hello world!
- *
- */
+import com.shadab.Screens.HomePage;
+
 public class App 
 {
+    //Runner
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+        new HomePage();
     }
 }
