@@ -8,6 +8,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import com.shadab.DB.tododb;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -35,28 +37,30 @@ public class HomePage implements ActionListener {
         addButton.setLayout(null);
         addButton.addActionListener(this);
 
-        label1.setVisible(true);
-        label1.setBounds(40, 120, 500, 80);
-        label1.setFont(new Font("Arial", Font.BOLD, 18));
+        String[] arr = new tododb().getAllDocuments();
 
         frame.setSize(X, Y);
         frame.add(new TopPanel());
+        frame.add(new ToDoList(arr));
         frame.add(textField);
         frame.add(todoLabel);
-        frame.add(label1);
         frame.add(addButton);
         frame.setLayout(null);
         frame.setVisible(true);
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        String s1 = textField.getText();
-        label1.setText(s1);
+        if (e.getSource() == addButton) {
+            String text = textField.getText();
+            new tododb().add("todo", text);
+            System.out.println("ToDo Added Successfully!");
+        }
 
     }
 
